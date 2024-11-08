@@ -55,6 +55,9 @@ class EmpresaTests {
 
         var listEmp = empRepo.findAll();
 
+/*
+        listEmp.forEach( e -> listEmp.stream().filter(Object));
+*/
 
         listEmp.forEach(System.out::println);
 
@@ -70,8 +73,8 @@ class EmpresaTests {
 
         var listEmp = empRepo.findAll();
 
-
-        listEmp.forEach(System.out::println);
+        listEmp.stream().filter(empleado -> empleado.getApellido2() != null)
+        .forEach(e -> System.out.println(e.getNombre().toUpperCase()+e.getApellido1().toUpperCase()+e.getApellido2().toUpperCase()));
 
 
     }
@@ -86,6 +89,8 @@ class EmpresaTests {
 
         var listEmp = empRepo.findAll();
 
+/*
+        listEmp.forEach();*/
 
         listEmp.forEach(System.out::println);
 
@@ -208,6 +213,7 @@ class EmpresaTests {
 
         var listEmp = empRepo.findAll();
 
+        listEmp.stream().filter(e -> e.getNif().equals("38382980M"));
 
 
         listEmp.forEach(System.out::println);
@@ -308,6 +314,7 @@ class EmpresaTests {
     /**
      * 20. Calcula el presupuesto máximo, mínimo  y número total de departamentos con un solo stream.
      */
+    @Test
     void test20() {
         
         var listDep = depRepo.findAll();
@@ -315,6 +322,8 @@ class EmpresaTests {
         //
 
         listDep.forEach(System.out::println);
+
+        System.out.println(listDep.stream().mapToDouble(x -> x.getCodigo()).average());
 
     }
 
